@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>選手名鑑｜BLUE STAR PARK</title>
+  <!-- 見出し用フォント（Oswald）と本文用フォント（Noto Sans JP）を読み込む -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Oswald:wght@500;700&display=swap">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+<!-- ヘッダー：スクロールしても上に残る -->
+<header class="siteHeader">
+  <a class="brand" href="./index.html">
+    <img class="brandStar" src="./image/logo.png" alt="横浜DeNAベイスターズ ロゴ">
+    <span class="brandName">BLUE STAR PARK<span class="brandSub">横浜DeNAベイスターズ 非公式ファンサイト</span></span>
+  </a>
+  <nav class="globalNav">
+    <a href="./index.html">TOP</a>
+    <a href="./players.html" class="current">選手名鑑</a>
+  </nav>
+</header>
+
+<!-- ページの見出し -->
+<section class="pageTitle">
+  <h1>PLAYERS</h1>
+  <p>選手名鑑</p>
+</section>
+
+<!-- 検索と絞り込み -->
+<div class="searchBox">
+  <p class="searchLabel">SEARCH</p>
+  <!-- 虫めがねアイコン＋入力欄（下線だけのシンプルな形） -->
+  <div class="searchField">
+    <svg class="searchIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+    <input class="searchInput" id="searchInput" type="search" placeholder="名前・背番号で検索">
+  </div>
+  <div class="filters">
+    <button class="chip on" data-pos="すべて"><span>すべて</span></button>
+    <button class="chip" data-pos="投手"><span>投手</span></button>
+    <button class="chip" data-pos="捕手"><span>捕手</span></button>
+    <button class="chip" data-pos="内野手"><span>内野手</span></button>
+    <button class="chip" data-pos="外野手"><span>外野手</span></button>
+    <label class="devToggle"><input type="checkbox" id="devCheck" checked> 育成選手も表示</label>
+  </div>
+</div>
+
+<!-- 検索結果 -->
+<p class="resultInfo"><strong id="resultCount">0</strong> 人</p>
+<div class="playerGrid" id="playerGrid"></div>
+
+<!-- フッター -->
+<footer class="siteFooter">
+  <div>BLUE STAR PARK は個人が制作した非公式のファンサイトです。球団・NPBとは関係ありません。</div>
+  <div>選手データ出典：NPB公式サイト「横浜DeNAベイスターズ 選手一覧」（2026年シーズン終了時点）</div>
+</footer>
+
+<!-- トップへ戻るボタン -->
+<a href="#" class="toTop" aria-label="ページの先頭へ">▲</a>
+
+<!-- 隠しコマンド発動時に下から出てくるバー -->
+<div class="nowPlaying" id="nowPlaying">
+  <span class="nowText"></span>
+  <button id="stopBgm">STOP</button>
+</div>
+
+<script src="./js/players.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,808 @@
+/* サイト全体のデザイン */
+:root{
+  --navy: #0b1f4b;      /* 濃紺：ヘッダーや文字 */
+  --blue: #0062b8;      /* 横浜ブルー：サイトの基調色 */
+  --sky: #3ab4f2;       /* 水色：アクセント */
+  --star: #f7c843;      /* 星の金色：強調 */
+  --bg: #f2f6fb;        /* 背景の薄い青白 */
+  --white: #ffffff;
+  --headerH: 64px;      /* ヘッダーの高さ */
+}
+
+*{
+  box-sizing: border-box; /* 幅の計算に余白と枠線を含める */
+}
+
+html{
+  scroll-behavior: smooth; /* ページ内移動をなめらかにする */
+}
+
+body{
+  margin: 0;
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  background-color: var(--bg);
+  color: var(--navy);
+  overflow-x: hidden; /* 横スクロールを出さない */
+}
+
+a{
+  color: inherit;
+}
+
+/* ヘッダー */
+.siteHeader{
+  position: sticky; /* スクロールしても画面上部に残る */
+  top: 0;
+  z-index: 50;
+  height: var(--headerH);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background-color: var(--navy);
+  color: var(--white);
+  border-bottom: 4px solid var(--blue); /* 下に横浜ブルーの線 */
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brandStar{
+  height: 46px; /* ヘッダーに収まる高さ */
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.brand:hover .brandStar{
+  transform: scale(1.08); /* ホバーで少し大きく */
+}
+
+.brandName{
+  font-family: "Oswald", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap; /* ロゴ名を途中で折り返さない */
+}
+
+.brandSub{
+  display: block;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+}
+
+.globalNav{
+  display: flex;
+  gap: 4px;
+}
+
+.globalNav a{
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap; /* メニュー名を途中で折り返さない */
+  transition: background-color 0.2s;
+}
+
+.globalNav a:hover{
+  background-color: rgba(255, 255, 255, 0.15); /* ホバーで薄く光らせる */
+}
+
+.globalNav a.current{
+  background-color: var(--blue); /* 今いるページを横浜ブルーで強調 */
+}
+
+/* トップ見出し */
+.hero{
+  position: relative;
+  overflow: hidden;
+  padding: 72px 24px 120px;
+  color: var(--white);
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 28px), /* 斜めのストライプ */
+    linear-gradient(160deg, var(--blue) 0%, var(--navy) 100%); /* 青から紺へのグラデーション */
+}
+
+.hero::after{
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: -60px;
+  height: 120px;
+  background-color: var(--bg);
+  transform: rotate(-3deg); /* 下端を斜めに切ってスピード感を出す */
+}
+
+.heroInner{
+  position: relative;
+  z-index: 1; /* 斜めの切り口より手前に出す */
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr; /* 左に文字、右にバナー */
+  align-items: center;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.heroBannerLink{
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  justify-self: end;
+}
+
+.heroBanner{
+  display: block;
+  width: 100%;
+  border: 4px solid var(--white);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); /* 影で浮かせる */
+  transform: rotate(2deg); /* 少し傾けて動きを出す */
+  transition: transform 0.3s;
+}
+
+.heroBannerLink:hover .heroBanner{
+  transform: rotate(0deg) scale(1.03); /* ホバーで傾きが戻り、少し大きくなる */
+}
+
+.heroEn{
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.4em;
+  color: var(--sky);
+  margin: 0 0 12px;
+}
+
+.heroTitle{
+  font-size: clamp(40px, 8vw, 88px); /* 画面幅に合わせて文字サイズを自動調整 */
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 0;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.heroTitle em{
+  font-style: normal;
+  color: var(--star);
+}
+
+.heroLead{
+  margin: 24px 0 0;
+  max-width: 560px;
+  line-height: 1.9;
+  opacity: 0.9;
+}
+
+/* 背景できらめく星 */
+.twinkle{
+  position: absolute;
+  color: var(--white);
+  opacity: 0;
+  animation: twinkle 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes twinkle{
+  0%, 100%{ opacity: 0; transform: scale(0.6); }
+  50%{ opacity: 0.8; transform: scale(1); }
+}
+
+/* 共通デザイン*/
+.section{
+  padding: 64px 0;
+}
+
+.sectionHead{
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto 28px;
+}
+
+.sectionHead h2{
+  font-family: "Oswald", sans-serif;
+  font-size: 44px;
+  margin: 0;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+}
+
+.sectionHead p{
+  margin: 0;
+  font-weight: 700;
+}
+
+.btn{
+  display: inline-block;
+  padding: 14px 32px;
+  background-color: var(--blue);
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 98, 184, 0.35);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:hover{
+  background-color: var(--navy);
+  transform: translateY(-2px); /* ホバーで少し浮かせる */
+}
+
+.center{
+  text-align: center;
+  margin-top: 36px;
+}
+
+/* 選手紹介のベルトコンベア */
+.conveyor{
+  overflow: hidden; /* はみ出したカードは隠す */
+  padding: 12px 0;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); /* 両端をふわっと消す */
+}
+
+.conveyorLabel{
+  max-width: 1200px;
+  margin: 12px auto 4px;
+  padding: 0 24px;
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--blue);
+}
+
+.conveyorTrack{
+  display: flex;
+  gap: 16px;
+  width: max-content; /* カードを全部横一列に並べる */
+  animation: flow var(--duration, 120s) linear infinite; /* 一定の速さで流し続ける */
+}
+
+.conveyorTrack.reverse{
+  animation-direction: reverse; /* 2段目は逆向きに流す */
+}
+
+.conveyor:hover .conveyorTrack{
+  animation-play-state: paused; /* マウスを乗せると止まる */
+}
+
+@keyframes flow{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); } /* 同じ列を2回並べ、半分進んだら最初に戻る＝継ぎ目なくループ */
+}
+
+/* 選手カード（コンベアと名鑑で同じもの） */
+.playerCard{
+  position: relative;
+  flex: 0 0 auto;
+  width: 168px;
+  height: 216px;
+  padding: 14px;
+  overflow: hidden;
+  color: var(--white);
+  text-decoration: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 14px), /* ユニフォーム風の縦じま */
+    linear-gradient(165deg, var(--blue), var(--navy));
+  box-shadow: 0 6px 18px rgba(11, 31, 75, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 牧のカード：金色の枠 */
+.playerCard.special{
+  box-shadow: inset 0 0 0 3px var(--star), 0 6px 18px rgba(11, 31, 75, 0.25);
+}
+
+.playerCard.special:hover{
+  transform: translateY(-6px); /* ホバーで浮き上がる */
+}
+
+.cardPhoto{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* カードの形に合わせて切り抜く */
+  object-position: 45% 0;
+  opacity: 0;
+  transform: translateY(12%);
+  transition: opacity 0.3s, transform 0.3s;
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 90%); /* 下をぼかして名前を読みやすく */
+}
+
+.special:hover .cardPhoto{
+  opacity: 1;
+  transform: translateY(0); /* 下からせり上がって写真が出る */
+}
+
+.special .cardNo{
+  transition: opacity 0.3s;
+}
+
+.special:hover .cardNo{
+  opacity: 0; /* 写真が出たら背番号は消す */
+}
+
+.playerCard::before{
+  content: "★";
+  position: absolute;
+  right: -14px;
+  top: -26px;
+  font-size: 110px;
+  color: rgba(255, 255, 255, 0.07); /* 背景にうっすら大きな星 */
+}
+
+.cardNo{
+  font-family: "Oswald", sans-serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 18px;
+}
+
+.cardName{
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 40px;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.cardPos{
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-family: "Oswald", sans-serif; /* 見出しのPLAYERSと同じフォント */
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.12em; /* 文字間を広げて引き締める */
+  color: var(--white);
+  opacity: 0.85;
+}
+
+.cardName,
+.cardPos,
+.cardDev{
+  z-index: 1; /* 写真より手前に表示 */
+}
+
+.cardDev{
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* features */
+.featureList{
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 24px 48px;
+  font-size: 13px;
+}
+
+.featureList h2{
+  margin: 0 0 8px;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  color: var(--blue);
+}
+
+.featureList dl{
+  display: grid;
+  grid-template-columns: 9em 1fr; /* 左に項目名、右に説明 */
+  margin: 0;
+  border-top: 1px solid #c9d8ec;
+}
+
+.featureList dt,
+.featureList dd{
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #c9d8ec; /* 各行の下に細い線 */
+}
+
+.featureList dt{
+  font-weight: 700;
+}
+
+/* 選手名鑑ページ */
+.pageTitle{
+  padding: 56px 24px 72px;
+  color: var(--white);
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 28px),
+    linear-gradient(160deg, var(--blue), var(--navy));
+  text-align: center;
+}
+
+.pageTitle h1{
+  font-family: "Oswald", sans-serif;
+  font-size: 56px;
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.pageTitle p{
+  margin: 4px 0 0;
+  font-weight: 700;
+}
+
+.searchBox{
+  max-width: 960px;
+  margin: -40px auto 0; /* 見出しの帯に少し重ねる */
+  padding: 22px 28px 26px;
+  background-color: var(--white);
+  border-top: 6px solid var(--blue); /* 上辺に横浜ブルーの帯 */
+  box-shadow: 0 10px 30px rgba(11, 31, 75, 0.15);
+  position: relative;
+}
+
+.searchLabel{
+  margin: 0 0 4px;
+  font-family: "Oswald", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--blue);
+}
+
+.searchField{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 3px solid var(--navy); /* 枠ではなく下線だけ */
+  transition: border-color 0.2s;
+}
+
+.searchField:focus-within{
+  border-bottom-color: var(--sky); /* 入力中は下線を水色に */
+}
+
+.searchIcon{
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.searchField:focus-within .searchIcon{
+  stroke: var(--sky);
+}
+
+.searchInput{
+  width: 100%;
+  padding: 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.searchInput::placeholder{
+  color: #a9b8cc;
+  font-weight: 400;
+}
+
+.filters{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chip{
+  padding: 8px 18px;
+  border: 2px solid var(--blue);
+  background-color: var(--white);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transform: skewX(-14deg); /* 平行四辺形にしてスピード感を出す */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.chip span{
+  display: inline-block;
+  transform: skewX(14deg); /* 文字だけは傾きを戻す */
+}
+
+.chip:hover{
+  background-color: #e3eefb;
+}
+
+.chip.on{
+  background-color: var(--blue); /* 選択中の絞り込みは塗りつぶす */
+  color: var(--white);
+}
+
+.devToggle{
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resultInfo{
+  max-width: 1200px;
+  margin: 28px auto 12px;
+  padding: 0 24px;
+  font-weight: 700;
+}
+
+.resultInfo strong{
+  font-family: "Oswald", sans-serif;
+  font-size: 28px;
+  color: var(--blue);
+}
+
+.playerGrid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* 入るだけカードを並べる */
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.playerGrid .playerCard{
+  width: auto; /* 名鑑ではマスの幅に合わせる */
+}
+
+.empty{
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 0;
+  font-weight: 700;
+}
+
+/* フッター */
+.siteFooter{
+  background-color: var(--navy);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.9;
+  padding: 32px 24px 80px;
+}
+
+/* トップへ戻るボタン */
+.toTop{
+  position: fixed; /* 画面右下に固定 */
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  background-color: var(--blue);
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.toTop:hover{
+  background-color: var(--navy);
+}
+
+/* 隠しコマンド発動中（星が降る） */
+.fallingStar{
+  position: fixed;
+  top: -40px;
+  z-index: 60;
+  color: var(--star);
+  pointer-events: none;
+  animation: fall linear forwards;
+  text-shadow: 0 0 10px rgba(247, 200, 67, 0.8);
+}
+
+@keyframes fall{
+  to{ transform: translateY(110vh) rotate(360deg); } /* 回転しながら画面下まで落ちる */
+}
+
+.nowPlaying{
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px 12px 22px;
+  background-color: var(--navy);
+  color: var(--white);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--star);
+  transform: translate(-50%, 150%); /* 普段は画面の下に隠しておく */
+  visibility: hidden;
+  transition: transform 0.4s, visibility 0.4s;
+}
+
+.nowPlaying.show{
+  transform: translate(-50%, 0); /* 発動したら下からせり上がる */
+  visibility: visible;
+}
+
+.nowPlaying button{
+  border: 0;
+  padding: 6px 14px;
+  background-color: var(--star);
+  color: var(--navy);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.note{
+  display: inline-block;
+  animation: bounce 0.6s infinite alternate; /* 音符を跳ねさせる */
+}
+
+@keyframes bounce{
+  to{ transform: translateY(-5px); }
+}
+
+body.fever .hero{
+  animation: pulse 0.9s infinite alternate; /* 発動中はトップの背景を脈打たせる */
+}
+
+@keyframes pulse{
+  to{ filter: brightness(1.25) saturate(1.2); }
+}
+
+/* スマホ対応：画面幅が700px以下のときだけ適用 */
+@media (max-width: 700px){
+  .siteHeader{
+    padding: 0 14px;
+  }
+
+  .brandSub{
+    display: none; /* 狭い画面では小さい説明文を隠す */
+  }
+
+  .brandName{
+    font-size: 17px;
+  }
+
+  .heroEn{
+    font-size: 13px;
+    letter-spacing: 0.2em; /* 文字間を詰めて1行に収める */
+  }
+
+  .globalNav a{
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .hero{
+    padding: 64px 18px 96px;
+  }
+
+  .sectionHead{
+    flex-direction: column; /* 見出しと説明を縦に並べる */
+    gap: 4px;
+    padding: 0 18px;
+  }
+
+  .sectionHead h2{
+    font-size: 34px;
+  }
+
+  .playerCard{
+    width: 140px; /* カードを小さめにして多く見えるようにする */
+    height: 184px;
+  }
+
+  .cardNo{
+    font-size: 60px;
+  }
+
+  .cardName{
+    font-size: 15px;
+  }
+
+  .searchBox{
+    margin: -40px 14px 0;
+    padding: 18px;
+  }
+
+  .searchInput{
+    font-size: 17px;
+  }
+
+  .heroInner{
+    grid-template-columns: 1fr; /* スマホでは文字とバナーを縦に並べる */
+    gap: 28px;
+    text-align: center;
+  }
+
+  .heroLead{
+    margin: 16px auto 0;
+  }
+
+  .hero{
+    padding: 44px 18px 84px; /* 上下の余白を詰めて、見出しを画面の上の方に */
+  }
+
+  .heroEn{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .heroLead{
+    font-size: 3.2vw; /* 説明文は小さくして見出しを目立たせる。画面幅に合わせ、1文が1行に収まる大きさ */
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+
+  .heroBanner{
+    border-width: 3px;
+  }
+
+  .twinkle{
+    filter: opacity(0.4); /* 背景の星を控えめにする */
+  }
+
+  .heroBannerLink{
+    justify-self: center;
+    max-width: 200px; /* バナーを小さくし、見出しより目立たないようにする */
+  }
+
+  .featureList dl{
+    grid-template-columns: 1fr; /* スマホでは項目名と説明を縦に並べる */
+  }
+
+  .featureList dt{
+    padding-bottom: 2px;
+    border-bottom: none; /* 縦並びでは項目名の下線を消す */
+  }
+
+  .featureList dd{
+    padding-top: 0;
+  }
+
+  .brandStar{
+    height: 38px;
+  }
+
+  .devToggle{
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .playerGrid{
+    grid-template-columns: repeat(2, 1fr); /* 名鑑は2列に固定 */
+    padding: 0 14px 64px;
+  }
+
+  .nowPlaying{
+    width: calc(100% - 28px);
+    justify-content: space-between;
+    font-size: 14px;
+  }
+}
