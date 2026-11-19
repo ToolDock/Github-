@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>LTKpractice</title>
+  <link rel="icon" href="LTKlogo.png" type="image/png">
+  <style>
+  html {
+  scroll-behavior: smooth;
+  }
+  body{
+    background-attachment: fixed;
+      background-color:#f4f2ee;
+      margin: 0;
+  }
+.top-bar {
+  position: sticky; 
+  top: 0;
+  z-index: 100;
+  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  
+  background-color: #111;
+  color: white;
+  padding: 15px 30px;
+}
+.manu {
+  display: flex;
+  align-items:center;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-left: 30px;
+  transition: 0.3s;
+}
+.menu a:hover{
+	font-size:20px;
+}
+.logo img{
+  height:30px;
+}
+.anim-box {
+  max-width: 25%;
+  height: auto;
+  opacity: 0;
+  animation: fadeIn 1.5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+.loop-wrap{
+  background-color: #000000;
+  padding:30px 0 ;
+  overflow: hidden;
+  width: 100%;
+}
+.loop-slide-left {
+  display: flex;
+  width: max-content;
+  animation: loopAnimationleft 20s linear infinite;
+  /*margin-bottom: 20px;*/
+}
+.loop-slide-left img {
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+}
+.main{
+  padding:40px;
+  text-align: center;
+}
+.main img{
+  max-width:80%;
+  height :auto;
+}
+.descri{
+  padding:40px;
+  text-align: center;
+}
+.descri img{
+  max-width:60%;
+  height :auto;
+}
+.member{
+  padding:40px;
+  text-align: center;
+}
+.member img{
+  width: 80%;
+  height :auto;
+}
+.icon{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 10px;
+}
+.button {
+  position: sticky; 
+  top: 30px;
+  z-index: 100;
+  /*overflow: hidden;*/
+}
+.button img {
+  height :40px;
+  width:auto;
+  transition: 0.3s;/*大きくなる時間の変化*/
+}
+.button img:hover {
+	transform: scale(1.3);
+}
+.button2 {
+  position: sticky; 
+  margin-top: 5px;
+  top: 30px;
+  z-index: 100;
+  /*overflow: hidden;*/
+}
+.button2 img {
+  height :30px;
+  width:auto;
+  transition: 0.3s;/*大きくなる時間の変化*/
+}
+.button2 img:hover {
+	transform: scale(1.3);
+}
+.button3 {
+  margin-top: 5px;
+  position: sticky; 
+  top: 30px;
+  z-index: 100;
+  /*overflow: hidden;*/
+}
+.button3 img {
+  height :35px;
+  width:auto;
+  transition: 0.3s;/*大きくなる時間の変化*/
+}
+.button3 img:hover {
+	transform: scale(1.3);
+}
+.team{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);/*繰り返す配置*/
+  gap: 40px 10px;
+  /*overflow: hidden;*/
+}
+.team img{
+  max-width:95%;
+  height :auto;
+  border-radius: 8px;
+  transition: 0.3s;/*大きくなる時間の変化*/
+}
+.team img:hover {
+	transform: scale(1.07);
+}
+.bottomcredit{
+  width: 100%;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
+}
+.bottomcredit a {
+  color: white;
+  text-decoration: none;
+  margin-left: 30px;
+  transition: 0.3s;
+}
+.channel-list {
+  display: flex;           
+  justify-content: center; 
+  gap: 50px;  
+  flex-wrap: wrap;
+}
+.channel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  text-align: center;
+}
+.circle-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; 
+}
+.icon-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+}
+
+.icon-wrapper .circle-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+.icon-wrapper .hover-img {
+  opacity: 0;
+}
+.icon-wrapper:hover .default-img {
+  opacity: 0;
+}
+.icon-wrapper:hover .hover-img {
+  opacity: 1;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loopAnimationleft {
+  0% {
+    transform: translateX(0%); /* 最初はそのままの位置 */
+  }
+  100% {
+    transform: translateX(-50%); /* 全体の長さの「半分」まで左に移動する */
+  }
+}
+@keyframes loopAnimationright {
+  0% {
+    transform: translateX(0%); /* 最初はそのままの位置 */
+  } 
+  100% {
+    transform: translateX(50%); /* 全体の長さの「半分」まで右に移動する */
+  }
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="logo">
+    <img src ="LTKlogo.png">
+  </div>
+  <div class="menu">
+    <a href="LTKpractice.html">HOME</a>
+    <a href="https://fistbump-news.jp/">NEWS</a>
+    <a href="#">ABOUT</a>
+  </div>
+  <div class="icon">
+    <div class=" button">
+      <a href="https://www.youtube.com/@lolthek4sen"><img src ="youtube_icon.png" alt = "youtube"></a>
+    </div>
+    <div class=" button2">
+      <a href="https://x.com/lolthek4sen?lang=ja"><img src ="Xlogo-white.png" alt = "X"></a>
+    </div>
+    <div class=" button3">
+      <a href="https://www.twitch.tv/lolthek4sen"><img src ="twich_purple.png" alt = "twich"></a>
+    </div>
+  </div>
+</div>
+<div class ="main">
+  <img src ="LTK_S4_KV_RS.jpg">
+</div>
+<div class ="descri">
+  
+  <h2>LTK (League The k4sen)とは？</h2>
+  <p>
+    <a href="https://zetadivision.com/">ZETA DIVISION</a>所属の人気ストリーマーの<a href="https://zetadivision.com/players/k4sen">k4sen</a>が主催する『<a href="https://www.leagueoflegends.com/ja-jp/">League of Legends(LoL)</a>』のコミュニティ大会です。<br>
+    今期で4期目となるLTKは、毎回多くの人気ストリーマーやVTuber、元プロゲーマーなどが参加し、笑いあり涙ありの熱いドラマが生まれる大注目のイベントとなっています。<br>
+    第4期となる現在開催中のLTKは10/15日よりレギュラーシーズンが開幕しており、初戦から白熱した試合が行われ、次戦は3日後の10/19に控えており、勝利に向けて多くの出場選手たちが練習を行っています。
+  </p>
+  <img src ="LTKsche.jpg">
+</div>
+<div class="loop-wrap">
+  <div class="loop-slide-left"> 
+    <a href="https://league.thek4sen.com/Finale_Playoffs/"><img src="LTKOFF.jpg" alt="LTKOFF"></a>
+    <a href="#team-section"><img src="LTKteam.jpg" alt="LTK"></a>
+    <a href="https://fzmz.jp//"><img src="LTKFZMZ.jpg" alt="FZMZ"></a>
+    <a href="https://league.thek4sen.com/Finale_Playoffs/"><img src="LTKOFF.jpg" alt="LTKOFF"></a>
+    <a href="#team-section"><img src="LTKteam.jpg" alt="LTK"></a>
+    <a href="https://fzmz.jp//"><img src="LTKFZMZ.jpg" alt="FZMZ"></a>
+    <a href="https://league.thek4sen.com/Finale_Playoffs/"><img src="LTKOFF.jpg" alt="LTKOFF"></a>
+    <a href="#team-section"><img src="LTKteam.jpg" alt="LTK"></a>
+    <a href="https://fzmz.jp//"><img src="LTKFZMZ.jpg" alt="FZMZ"></a>
+    <a href="https://league.thek4sen.com/Finale_Playoffs/"><img src="LTKOFF.jpg" alt="LTKOFF"></a>
+    <a href="#team-section"><img src="LTKteam.jpg" alt="LTK"></a>
+    <a href="https://fzmz.jp//"><img src="LTKFZMZ.jpg" alt="FZMZ"></a>
+  </div>
+</div>
+<div class ="member" id="team-section">
+  <h2>LTK出場 選手紹介</h2>
+  <h3>
+    LTK#4 では前回の#3同様、Mastersを含めた、合計60人が4チームに分かれて勝利を争っており、<br>
+    1チームの中に3つのクラス"NEXT","CORE","MASTERS"があり、各5人の1チーム15人体制となっています。
+  </h3>
+  <img src ="LTKmember.jpg">
+  <br>
+  <br>
+  <br>
+  <h2>LTK出場 各チーム</h2>
+  <br>
+  <br>
+  <div class="team">
+    <a href="LTKpractice.html"><img src ="LTKCC.jpg" alt = "CC"></a>
+    <a href="LTKpractice.html"><img src ="LTKDD.jpg" alt = "DD"></a>
+    <a href="LTKpractice.html"><img src ="LTKIT.jpg" alt = "IT"></a>
+    <a href="LTKpractice.html"><img src ="LTKLR.jpg" alt = "LR"></a>
+  </div>
+</div>
+<div class="channel-list">
+  <!-- 1つ目 -->
+  <div class="channel-item">
+    <div class="icon-wrapper">
+    <img src="yauji.jpg" class="circle-icon default" alt="yukio">
+    <img src="yaujikao.jpg" class="circle-icon hover-img">
+  </div>
+    <h3> ゆきお　TOP</h3>
+  </div>
+  
+  <div class="channel-item">
+    <div class="icon-wrapper">
+    <img src="k4sen.jpg" class="circle-icon default" alt="k4sen">
+    <img src="lmtmk4sen.jpg" class="circle-icon hover-img">
+  </div>
+    <h3>k4sen /  かせん　JG</h3>
+  </div>
+  
+  <div class="channel-item">
+    <div class="icon-wrapper">
+    <img src="kuzuha.jpg" class="circle-icon default" alt="kuzuha">
+    <img src="coolkuzuha.jpg" class="circle-icon hover-img">
+    </div>
+    <h3>葛葉　MID</h3>
+  </div>
+
+  <div class="channel-item">
+    <div class="icon-wrapper">
+    <img src="tise.jpg" class="circle-icon default" alt="tatumaki tise">
+    <img src="ti-tama.jpg" class="circle-icon hover-img">
+    </div>
+    <h3>竜巻　ちせ　ADC</h3>
+  </div>
+
+  <div class="channel-item">
+    <div class="icon-wrapper">
+    <img src="aria.jpg" class="circle-icon default" alt="konkon aria">
+    <img src="a-tyan.jpg" class="circle-icon hover-img">
+    </div>
+    <h3>昏昏 アリア　SUP</h3>
+  </div>
+</div>
+<div class="bottomcredit">
+  <h2><a href="https://lumos-ynu.jp/">LUMOS</a></h2>
+</div>
+</body>
+</html>
